@@ -32,3 +32,5 @@ INFO="${Blu}";
 WARN="${Yel}";
 ERRO="${Red}";
 FATA="${Whi}${On_Red}";
+HEAD="${Whi}${On_Blu}";
+TAIL="${Whi}${On_Cya}";

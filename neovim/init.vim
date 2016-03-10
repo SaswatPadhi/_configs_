@@ -23,6 +23,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'valloric/MatchTagAlways'
 Plug 'vim-utils/vim-man'
 Plug 'lervag/vimtex'
+Plug 'dag/vim-fish'
 " }
 
 " Features & Utilities {
@@ -127,6 +128,13 @@ autocmd VimEnter * set concealcursor="nc"
 autocmd VimEnter * set number relativenumber
 autocmd InsertLeave * set relativenumber
 autocmd InsertEnter * set relativenumber!
+
+" Restore cursor position
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
+  \   execute("normal `\"") |
+  \ endif
+
 " }
 
 " Key Bindings {
