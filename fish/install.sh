@@ -35,3 +35,5 @@ for config_directory in "${__BASH_FISH_INSTALL_SH_SOURCE__}"/*; do
   if [ "$?" -eq $BACKUP_CODE ]; then EXTRA_FLAGS="--backup=numbered" ; fi
   log INFO ; ln -rfsv $EXTRA_FLAGS "${config_directory}" -t "${FISH_CONFIG_PATH}"
 done
+
+log WARN "[!] Please restart fish to source the new config.\n"

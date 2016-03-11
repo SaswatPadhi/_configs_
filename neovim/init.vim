@@ -134,24 +134,26 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
   \   execute("normal `\"") |
   \ endif
-
 " }
 
 " Key Bindings {
-
 " Who needs ex?
-nnoremap Q <nop>
+nnoremap Q <NOP>
 
 " Recording macros is beyond me
-map q <nop>
+map q <NOP>
 
 " Too lazy to press Shift
 nnoremap ; :
 
+map t :tabnew<SPACE>
+map <Leader>t :tabn<CR>
+map <Leader><Leader>t :tabp<CR>
+
 vmap < <gv
 vmap > >gv
 
-map <esc> :noh<cr>
+map <ESC> :noh<CR>
 
 " Strip white space
 map <Leader>sw :%s/\s\+$//e<CR>

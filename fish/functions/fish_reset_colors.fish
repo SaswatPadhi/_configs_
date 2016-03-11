@@ -3,7 +3,7 @@
 # Assumes a solarized-light palette
 # Only tested on gnome-terminal
 
-function fish_reset_colors --description '[Re]sets shell colors'
+function fish_reset_colors --description='[Re]sets shell colors'
   set -gx fish_color_autosuggestion brblue
   set -gx fish_color_comment brcyan
   set -gx fish_color_error brred --underline
