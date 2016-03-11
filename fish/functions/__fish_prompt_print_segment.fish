@@ -2,7 +2,7 @@
 
 function __fish_prompt_print_segment                                           \
   --no-scope-shadowing --description='Print a segment with separator'          \
-  --argument-names 'side' 'color' 'bg_color' 'data' 'attr'
+  --argument-names 'color' 'bg_color' 'data' 'attr'
 
   [ "$bg_color" = normal ]; and set bg_color "$normal_color"
 

@@ -5,6 +5,8 @@ function fish_right_prompt --description='Right prompt on Fish'
   set last_bg_color ''
   set normal_color white
 
+  set side right
+
   #-----------------------------------------------------------------------------
 
   function __fish_right_prompt_print_duration                                  \
@@ -23,27 +25,34 @@ function fish_right_prompt --description='Right prompt on Fish'
       set DURATION (math "$DURATION % 60000")
     end
     if [ -n "$hours_mins" ]
-      __fish_prompt_print_segment right white brcyan "$hours_mins"
+      __fish_prompt_print_segment white brcyan "$hours_mins"
     end
 
     if [ "$DURATION" -ge 0 ]
       set sec_ms (math "scale=3; $DURATION / 1000")s
-      __fish_prompt_print_segment right brcyan grey "$sec_ms"
+      __fish_prompt_print_segment brcyan grey "$sec_ms"
     end
   end
 
   #-----------------------------------------------------------------------------
 
-
   __fish_right_prompt_print_duration
 
-  # Display the git branch ...
-  set branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
-  and __fish_prompt_print_segment right white green \uE0A0" $branch"
+  # Display the git branch, with basic status info ...
+  git status >/dev/null ^/dev/null
+  if [ "$status" -eq 0 ]
+    set branch (git rev-parse --abbrev-ref HEAD)
+    set dirty (git status --untracked-files=no --porcelain)
+    set untracked (git status --porcelain)
+
+    set dirty_color ([ -z "$dirty" ]; and echo green; or echo brred)
+    set ut_symbol ([ -z "$untracked" ]; and echo ""; or echo " +")
+    __fish_prompt_print_segment white $dirty_color \uE0A0" $branch$ut_symbol"
+  end
 
   # ... or the svn revision
   set rev (svn info ^/dev/null | grep Revision | cut -d' ' -f2)
-  [ -n "$rev" ]; and __fish_prompt_print_segment right white yellow "r$rev"
+  [ -n "$rev" ]; and __fish_prompt_print_segment white yellow "r$rev"
 
-  __fish_prompt_finalize right
+  __fish_prompt_finalize
 end

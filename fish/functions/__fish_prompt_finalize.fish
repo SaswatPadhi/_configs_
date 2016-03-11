@@ -2,7 +2,7 @@
 
 function __fish_prompt_finalize                                                \
   --no-scope-shadowing --description='Finalized the prompt'                    \
-  --argument-names 'side' 'color'
+  --argument-names 'color'
 
   set_color normal
 
