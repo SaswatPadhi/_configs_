@@ -6,13 +6,13 @@ My [dot], and config files etc. to help me setup a sane environment on a new mac
 
 #### In Repository:
 
+- [fish]: [`config.fish`](fish/config.fish), [`functions`](fish/functions) etc.
 - [neovim]: [`init.vim`](neovim/init.vim)
 - an install script that calls other install minions
 
 
 #### Work in Progres:
 
-- [fish]: `config.fish` etc.
 - gnome-terminal: palette & color scheme
 
 

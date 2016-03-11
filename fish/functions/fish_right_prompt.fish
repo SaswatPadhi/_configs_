@@ -43,7 +43,7 @@ function fish_right_prompt --description='Right prompt on Fish'
   if [ "$status" -eq 0 ]
     set branch (git rev-parse --abbrev-ref HEAD)
     set dirty (git status --untracked-files=no --porcelain)
-    set untracked (git status --porcelain)
+    set untracked (git ls-files -z --others --exclude-standard)
 
     set dirty_color ([ -z "$dirty" ]; and echo green; or echo brred)
     set ut_symbol ([ -z "$untracked" ]; and echo ""; or echo " +")

@@ -18,6 +18,7 @@ function fish_prompt --description='Primary/Left prompt on Fish'
     set parent (dirname "$ppwd")
     set current (basename "$ppwd")
     set color ([ -w "$PWD" ]; and echo brcyan; or echo red)
+    set lock ([ ! -w "$PWD" ]; and echo \uE0A2' ')
 
     switch "$parent"
       case "."
@@ -27,7 +28,7 @@ function fish_prompt --description='Primary/Left prompt on Fish'
         __fish_prompt_print_segment white brblue "$parent/"
     end
 
-    __fish_prompt_print_segment white $color "$current" --bold
+    __fish_prompt_print_segment white $color "$lock$current" --bold
   end
 
   #-----------------------------------------------------------------------------
