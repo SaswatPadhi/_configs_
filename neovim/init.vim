@@ -84,8 +84,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'Yggdroot/indentLine'
-let g:indentLine_char = '┊'
-let g:indentLine_color_term = 37
+let g:indentLine_char = ':'
+let g:indentLine_color_term = 251
 " }
 
 call plug#end()
@@ -149,6 +149,9 @@ nnoremap ; :
 map t :tabnew<SPACE>
 map <Leader>t :tabn<CR>
 map <Leader><Leader>t :tabp<CR>
+
+map <Leader>s :split<SPACE>
+map <Leader>v :vsplit<SPACE>
 
 vmap < <gv
 vmap > >gv

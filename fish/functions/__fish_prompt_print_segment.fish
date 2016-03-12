@@ -1,8 +1,8 @@
 #!/usr/bin/fish
 
-function __fish_prompt_print_segment                                           \
-  --no-scope-shadowing --description='Print a segment with separator'          \
-  --argument-names 'color' 'bg_color' 'data' 'attr'
+function __fish_prompt_print_segment --no-scope-shadowing                      \
+  --argument-names 'color' 'bg_color' 'data' 'attr'                            \
+  --description='Print a segment with separator'
 
   [ "$bg_color" = normal ]; and set bg_color "$normal_color"
 
@@ -23,7 +23,8 @@ function __fish_prompt_print_segment                                           \
       set_color $color --background=$bg_color
       echo -n \uE0B3
     else
-      set_color $bg_color ([ "$last_bg_color" ]; and echo "--background=$last_bg_color")
+      set_color $bg_color \
+                ([ "$last_bg_color" ]; and echo "--background=$last_bg_color")
       echo -n \uE0B2
     end
   end

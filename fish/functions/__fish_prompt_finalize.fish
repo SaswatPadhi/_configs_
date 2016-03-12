@@ -1,8 +1,7 @@
 #!/usr/bin/fish
 
-function __fish_prompt_finalize                                                \
-  --no-scope-shadowing --description='Finalized the prompt'                    \
-  --argument-names 'color'
+function __fish_prompt_finalize --no-scope-shadowing --argument-names 'color'  \
+  --description='Finalized the prompt'
 
   set_color normal
 

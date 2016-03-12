@@ -7,6 +7,18 @@ source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 set -gx PATH "/home/saswat/Repos/Z3-str" $PATH
 
+# Disable greeting message
 set -gx fish_greeting
 
+# [Re]load colorscheme
 fish_reset_colors
+
+
+# == ALIASES ================================================================= #
+
+alias grep "grep -sin --color=auto"
+
+
+# == UNIVERSALS ============================================================== #
+
+set -gx EDITOR nvim

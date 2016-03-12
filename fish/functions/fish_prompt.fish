@@ -5,61 +5,77 @@ function fish_prompt --description='Primary/Left prompt on Fish'
 
   set last_color ''
   set last_bg_color ''
-  set normal_color white
+  set normal_color (__fish_colorscheme_color 1 grey)
 
   set side left
 
   #-----------------------------------------------------------------------------
 
-  function __fish_prompt_print_pwd_segment                                     \
-    --no-scope-shadowing --description='Print a short $PWD segment'
+  function __fish_prompt_print_pwd_segment --no-scope-shadowing                \
+    --description='Print a short $PWD segment'
 
     set ppwd (prompt_pwd)
     set parent (dirname "$ppwd")
     set current (basename "$ppwd")
-    set color ([ -w "$PWD" ]; and echo brcyan; or echo red)
-    set lock ([ ! -w "$PWD" ]; and echo \uE0A2' ')
 
-    switch "$parent"
-      case "."
-      case "/"
-        __fish_prompt_print_segment white brblue "/"
-      case '*'
-        __fish_prompt_print_segment white brblue "$parent/"
+    if [ -w "$PWD" ]
+      set color (__fish_colorscheme_color 3 grey)
+    else
+      set lock (echo \uE0A2' ')
+      set color (__fish_colorscheme_color failure)
     end
 
-    __fish_prompt_print_segment white $color "$lock$current" --bold
+    [ "$parent" != "." ]
+      and __fish_prompt_print_segment $normal_color                     \
+                                      (__fish_colorscheme_color 4 grey) \
+                                      (switch "$parent"
+                                        case "/" ; echo "/"
+                                        case '*' ; echo "$parent/"
+                                      end)
+
+    __fish_prompt_print_segment $normal_color $color "$lock$current" --bold
   end
 
   #-----------------------------------------------------------------------------
 
   # Display non-zero exit status
-  if [ $exit_status -ne 0 ]
-    __fish_prompt_print_segment white red "$exit_status"
-  end
+  [ $exit_status -ne 0 ]
+    and __fish_prompt_print_segment $normal_color                      \
+                                    (__fish_colorscheme_color failure) \
+                                    "$exit_status"
 
   # Display job count
-  if [ (jobs -l | wc -l) -gt 0 ]
-    __fish_prompt_print_segment white black \u2699' '(jobs -l | wc -l)
-  end
+  [ (jobs -l | wc -l) -gt 0 ]
+    and __fish_prompt_print_segment $normal_color                     \
+                                    (__fish_colorscheme_color 7 grey) \
+                                    \u2699' '(jobs -l | wc -l)
 
   # Highlight super user
-  if [ (id -u $USER) -eq 0 ]
-    __fish_prompt_print_segment white purple "#" --bold
-  end
+  [ (id -u $USER) -eq 0 ]
+    and __fish_prompt_print_segment $normal_color                   \
+                                    (__fish_colorscheme_color head) \
+                                    "#" --bold
 
   __fish_prompt_print_pwd_segment
 
   # Display git info about pending commits
   git status >/dev/null ^/dev/null
   if [ "$status" -eq 0 ]
-    set pending_commits (git rev-list --left-right --count (git rev-parse --abbrev-ref HEAD)...(git rev-parse --abbrev-ref --symbolic-full-name @\{u\}) | tr \t \n)
-    if [ "$pending_commits[1]" -gt 0 ]
-      __fish_prompt_print_segment grey brmagenta \u2934"$pending_commits[1]"
-    end
-    if [ "$pending_commits[2]" -gt 0 ]
-      __fish_prompt_print_segment grey brmagenta \u2935"$pending_commits[2]"
-    end
+    set local_branch (git rev-parse --abbrev-ref HEAD)
+    set remote_branch (git rev-parse --abbrev-ref --symbolic-full-name @\{u\})
+
+    set pending_commits (git rev-list --left-right --count           \
+                                      $local_branch...$remote_branch \
+                         | tr \t \n)
+
+    [ "$pending_commits[1]" -gt 0 ]
+      and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
+                                      (__fish_colorscheme_color info)   \
+                                      \u2934"$pending_commits[1]"
+    [ "$pending_commits[2]" -gt 0 ]
+      and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
+                                      (__fish_colorscheme_color info)   \
+                                      \u2935"$pending_commits[2]"
   end
 
   # TODO: Above for svn
