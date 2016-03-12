@@ -7,6 +7,7 @@ if [ -n "${__BASH_LIB_DEPENDS_SH_SOURCE__}" ]; then return 0; fi
 __BASH_LIB_DEPENDS_SH_SOURCE__="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __BASH_LIB_DEPENDS_SH_LIB__="${__BASH_LIB_DEPENDS_SH_SOURCE__}"
 
+source "${__BASH_LIB_DEPENDS_SH_LIB__}/colors.sh"
 source "${__BASH_LIB_DEPENDS_SH_LIB__}/logging.sh"
 
 # ------------------------------------------------------------------------------
@@ -24,11 +25,19 @@ command_exists () {
 }
 
 verify_dependencies () {
-  for dependency in "$@"; do
+  while [ "$1" ]; do
+    local dependency="$1" ; shift
+    local version_flag="--version"
+
+    if [ "${dependency::1}" == "-" ]; then
+      version_flag="${dependency}"
+      dependency="$1" ; shift
+    fi
+
     if command_exists "${dependency}"; then
-      log SUCCESS "${dependency} detected: "; ${dependency} --version | head -n 1;
+      log SUCCESS "${Pur}${dependency} ${SUCC}detected: ${IPur}"; ${dependency} ${version_flag} | head -n 1
     else
-      log FATAL "${dependency} not detected. Please install, add to path and re-run this script.\n";
+      log FATAL "${dependency} not detected. Please install, add to path and re-run this script.\n"
       exit ${UNMET_DEPENDENCIES}
     fi
   done

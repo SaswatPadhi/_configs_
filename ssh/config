@@ -1,0 +1,15 @@
+Host ucla_lion
+  User padhi
+  Hostname lion.cs.ucla.edu
+
+Host ucla_mingus
+  User padhi
+  DynamicForward 8080
+  Hostname mingus.cs.ucla.edu
+
+Host ucla_labpc
+  Port 9023
+  User saswat
+  Hostname padhi.cs.ucla.edu
+  LocalForward 8000 localhost:8000
+  ProxyCommand ssh -q ucla_mingus nc %h %p

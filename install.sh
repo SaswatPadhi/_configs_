@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __BASH_INSTALL_SH_SOURCE__="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__BASH_INSTALL_SH_LIB__="${__BASH_INSTALL_SH_SOURCE__}/lib"
+__BASH_INSTALL_SH_LIB__="${__BASH_INSTALL_SH_SOURCE__}/_lib"
 
 source "${__BASH_INSTALL_SH_LIB__}/logging.sh"
 

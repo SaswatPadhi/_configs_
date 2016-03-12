@@ -3,7 +3,7 @@
 SCRIPT_ROOT="`realpath \"$0\"`"
 SCRIPT_ROOT="`dirname \"${SCRIPT_ROOT}\"`"
 
-LIB_ROOT="${SCRIPT_ROOT}/../../lib"
+LIB_ROOT="${SCRIPT_ROOT}/../../_lib"
 
 source "${LIB_ROOT}/colors.sh"
 

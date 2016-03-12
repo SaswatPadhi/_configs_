@@ -6,7 +6,7 @@ NVIM_CONFIG_PATH="${HOME}/.config/nvim"
 # ------------------------------------------------------------------------------
 
 __BASH_NEOVIM_INSTALL_SH_SOURCE__="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__BASH_NEOVIM_INSTALL_SH_LIB__="${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/../lib"
+__BASH_NEOVIM_INSTALL_SH_LIB__="${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/../_lib"
 
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/depends.sh"
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/logging.sh"
@@ -22,7 +22,7 @@ log INFO "[+] Install vim-plug plugin manager\n"
 check_and_replace "${NVIM_CONFIG_PATH}/autoload/plug.vim" allow_skip
 if [ "$?" -eq $OVERWRITE_CODE ]; then
   log INFO
-  curl -fLo "${NVIM_CONFIG_PATH}/autoload/plug.vim" --create-dirs              \
+  curl -#fLo "${NVIM_CONFIG_PATH}/autoload/plug.vim" --create-dirs             \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 fi
 

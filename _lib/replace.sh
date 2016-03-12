@@ -7,6 +7,7 @@ if [ -n "${__BASH_LIB_REPLACE_SH_SOURCE__}" ]; then return 0; fi
 __BASH_LIB_REPLACE_SH_SOURCE__="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __BASH_LIB_REPLACE_SH_LIB__="${__BASH_LIB_REPLACE_SH_SOURCE__}"
 
+source "${__BASH_LIB_REPLACE_SH_LIB__}/colors.sh"
 source "${__BASH_LIB_REPLACE_SH_LIB__}/logging.sh"
 
 # ------------------------------------------------------------------------------
@@ -41,7 +42,7 @@ function check_and_replace () {
   done
 
   if [ $TEST_FLAG "$target" ]; then
-    log WARNING "'$target' already exists.\n";
+    log WARNING "'${Pur}$target' ${WARN}already exists.\n";
     select _ in "${ALL_OPTIONS[@]}"; do
       case "${REPLY}" in
         1) return $OVERWRITE_CODE ;;

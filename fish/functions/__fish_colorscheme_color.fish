@@ -3,7 +3,7 @@
 function __fish_colorscheme_color --argument-names 'code' 'base'               \
   --description="The colorscheme and functions to access them"
 
-  set GREYS white grey brcyan brblue bryellow brgreen brblack
+  set GREYS white grey brcyan brblue bryellow brgreen black
 
   set success green
   set warning yellow

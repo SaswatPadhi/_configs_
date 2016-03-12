@@ -6,7 +6,7 @@ FISH_CONFIG_PATH="${HOME}/.config/fish"
 # ------------------------------------------------------------------------------
 
 __BASH_FISH_INSTALL_SH_SOURCE__="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__BASH_FISH_INSTALL_SH_LIB__="${__BASH_FISH_INSTALL_SH_SOURCE__}/../lib"
+__BASH_FISH_INSTALL_SH_LIB__="${__BASH_FISH_INSTALL_SH_SOURCE__}/../_lib"
 
 source "${__BASH_FISH_INSTALL_SH_LIB__}/depends.sh"
 source "${__BASH_FISH_INSTALL_SH_LIB__}/logging.sh"
