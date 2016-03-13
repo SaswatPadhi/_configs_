@@ -43,6 +43,7 @@ autocmd! User GoyoLeave Limelight!
 map <Leader>g :Goyo<CR>
 map <Leader><Leader>g :Goyo!<CR>
 
+Plug 'henrik/vim-indexed-search'
 
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_next_key='<C-n>'

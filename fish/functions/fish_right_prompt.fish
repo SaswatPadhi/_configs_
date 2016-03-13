@@ -3,7 +3,7 @@
 function fish_right_prompt --description='Right prompt on Fish'
   set last_color ''
   set last_bg_color ''
-  set normal_color (__fish_colorscheme_color 1 grey)
+  set normal_color (fish_colorscheme_color 1 grey)
 
   set side right
 
@@ -24,16 +24,16 @@ function fish_right_prompt --description='Right prompt on Fish'
       set hours_mins "$hours_mins"(math "scale=0; $DURATION / 60000")m
       set DURATION (math "$DURATION % 60000")
     end
-    if [ -n "$hours_mins" ]
+    if [ "$hours_mins" ]
       __fish_prompt_print_segment $normal_color                     \
-                                  (__fish_colorscheme_color 3 grey) \
+                                  (fish_colorscheme_color 3 grey) \
                                   "$hours_mins"
     end
 
     if [ "$DURATION" -ge 0 ]
       set sec_ms (math "scale=3; $DURATION / 1000")s
-      __fish_prompt_print_segment (__fish_colorscheme_color 3 grey) \
-                                  (__fish_colorscheme_color 2 grey) \
+      __fish_prompt_print_segment (fish_colorscheme_color 3 grey) \
+                                  (fish_colorscheme_color 2 grey) \
                                   "$sec_ms"
     end
   end
@@ -49,9 +49,9 @@ function fish_right_prompt --description='Right prompt on Fish'
     set dirty (git status --untracked-files=no --porcelain ^/dev/null)
 
     set dirty_color (
-      [ -z "$dirty" ]
-        and __fish_colorscheme_color success
-        or __fish_colorscheme_color failure
+      [ "$dirty" ]
+        and fish_colorscheme_color failure
+        or fish_colorscheme_color success
     )
 
     __fish_prompt_print_segment $normal_color $dirty_color \uE0A0" $branch"
@@ -59,25 +59,25 @@ function fish_right_prompt --description='Right prompt on Fish'
     set deleted (git status ^/dev/null | grep deleted)
     set untracked (git ls-files -z --others --exclude-standard ^/dev/null)
 
-    if [ -n "$deleted" ]; and [ -n "$untracked" ]
+    if [ "$deleted" ]; and [ "$untracked" ]
       set delta_symbol \u00B1
-    else if [ -n "$deleted" ]
+    else if [ "$deleted" ]
       set delta_symbol \u2717
-    else if [ -n "$untracked" ]
+    else if [ "$untracked" ]
       set delta_symbol '+'
     end
 
-    [ -n "$delta_symbol" ]
+    set -q delta_symbol
       and __fish_prompt_print_segment $normal_color                      \
-                                      (__fish_colorscheme_color warning) \
+                                      (fish_colorscheme_color warning) \
                                       $delta_symbol --bold
   end
 
   # ... or the svn revision
   set rev (svn info ^/dev/null | grep Revision | cut -d' ' -f2)
-  [ -n "$rev" ]
+  [ "$rev" ]
     and __fish_prompt_print_segment $normal_color                      \
-                                    (__fish_colorscheme_color warning) \
+                                    (fish_colorscheme_color warning) \
                                     "r$rev"
 
   __fish_prompt_finalize

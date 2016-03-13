@@ -16,7 +16,8 @@ fish_reset_colors
 
 # == ALIASES ================================================================= #
 
-alias grep "grep -sin --color=auto"
+alias grep  "grep -sin --color=auto"
+alias rm    "rm -iv"
 
 
 # == GLOBALS ================================================================= #
