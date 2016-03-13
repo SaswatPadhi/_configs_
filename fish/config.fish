@@ -10,6 +10,20 @@ set -gx PATH "/home/saswat/Repos/Z3-str" $PATH
 # Disable greeting message
 set -gx fish_greeting
 
+
+# == COLORSCHEME ============================================================= #
+
+set -gx __fish_greys white grey brcyan brblue bryellow brgreen black
+
+set -gx __fish_color_success green
+set -gx __fish_color_warning yellow
+set -gx __fish_color_failure brred
+
+set -gx __fish_color_info cyan
+set -gx __fish_color_head brmagenta
+set -gx __fish_color_symbol magenta
+
+
 # [Re]load colorscheme
 fish_reset_colors
 
