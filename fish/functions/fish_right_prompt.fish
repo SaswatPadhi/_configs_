@@ -45,19 +45,32 @@ function fish_right_prompt --description='Right prompt on Fish'
   # Display the git branch, with basic status info ...
   git status >/dev/null ^/dev/null
   if [ "$status" -eq 0 ]
-    set branch (git rev-parse --abbrev-ref HEAD)
-    set dirty (git status --untracked-files=no --porcelain)
-    set untracked (git ls-files -z --others --exclude-standard)
+    set branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
+    set dirty (git status --untracked-files=no --porcelain ^/dev/null)
 
     set dirty_color (
       [ -z "$dirty" ]
         and __fish_colorscheme_color success
         or __fish_colorscheme_color failure
     )
-    set ut_symbol ([ -z "$untracked" ]; and echo ""; or echo " +")
 
-    __fish_prompt_print_segment $normal_color $dirty_color \
-                                \uE0A0" $branch$ut_symbol"
+    __fish_prompt_print_segment $normal_color $dirty_color \uE0A0" $branch"
+
+    set deleted (git status ^/dev/null | grep deleted)
+    set untracked (git ls-files -z --others --exclude-standard ^/dev/null)
+
+    if [ -n "$deleted" ]; and [ -n "$untracked" ]
+      set delta_symbol \u00B1
+    else if [ -n "$deleted" ]
+      set delta_symbol \u2717
+    else if [ -n "$untracked" ]
+      set delta_symbol '+'
+    end
+
+    [ -n "$delta_symbol" ]
+      and __fish_prompt_print_segment $normal_color                      \
+                                      (__fish_colorscheme_color warning) \
+                                      $delta_symbol --bold
   end
 
   # ... or the svn revision

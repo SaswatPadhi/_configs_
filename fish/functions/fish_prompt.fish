@@ -61,21 +61,25 @@ function fish_prompt --description='Primary/Left prompt on Fish'
   # Display git info about pending commits
   git status >/dev/null ^/dev/null
   if [ "$status" -eq 0 ]
-    set local_branch (git rev-parse --abbrev-ref HEAD)
-    set remote_branch (git rev-parse --abbrev-ref --symbolic-full-name @\{u\})
+    set local_branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
+    set remote_branch (git rev-parse --abbrev-ref --symbolic-full-name @\{u\} \
+                           ^/dev/null)
 
-    set pending_commits (git rev-list --left-right --count           \
-                                      $local_branch...$remote_branch \
-                         | tr \t \n)
+    if [ -n "$remote_branch" ]
+      set pending_commits (git rev-list --left-right --count           \
+                                        $local_branch...$remote_branch \
+                                        ^/dev/null                     \
+                           | tr \t \n)
 
-    [ "$pending_commits[1]" -gt 0 ]
-      and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
-                                      (__fish_colorscheme_color info)   \
-                                      \u2934"$pending_commits[1]"
-    [ "$pending_commits[2]" -gt 0 ]
-      and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
-                                      (__fish_colorscheme_color info)   \
-                                      \u2935"$pending_commits[2]"
+      [ "$pending_commits[1]" -gt 0 ]
+        and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
+                                        (__fish_colorscheme_color info)   \
+                                        \u2934"$pending_commits[1]"
+      [ "$pending_commits[2]" -gt 0 ]
+        and __fish_prompt_print_segment (__fish_colorscheme_color 1 grey) \
+                                        (__fish_colorscheme_color info)   \
+                                        \u2935"$pending_commits[2]"
+    end
   end
 
   # TODO: Above for svn

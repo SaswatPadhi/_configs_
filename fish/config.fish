@@ -19,6 +19,11 @@ fish_reset_colors
 alias grep "grep -sin --color=auto"
 
 
-# == UNIVERSALS ============================================================== #
+# == GLOBALS ================================================================= #
 
-set -gx EDITOR nvim
+set -gx EDITOR  nvim
+set -gx BROWSER firefox
+
+if not set -q DISPLAY
+  set -gx BROWSER lynx
+end
