@@ -147,6 +147,9 @@ map q <NOP>
 " Too lazy to press Shift
 nnoremap ; :
 
+inoremap <C-z> <C-o>u
+inoremap <C-y> <C-o><C-r>
+
 map t :tabnew<SPACE>
 map <Leader>t :tabn<CR>
 map <Leader><Leader>t :tabp<CR>
