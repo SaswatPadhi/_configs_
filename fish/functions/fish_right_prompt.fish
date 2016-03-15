@@ -72,7 +72,7 @@ function fish_right_prompt --description='Right prompt on Fish'
     set dirty (git status --untracked-files=no --porcelain ^/dev/null | wc -l)
     set label (git rev-parse --abbrev-ref HEAD ^/dev/null)
     set untracked \
-        (git ls-files -z --others --exclude-standard ^/dev/null | wc -l)
+        (git ls-files --others --exclude-standard ^/dev/null | wc -l)
 
     __fish_right_prompt_print_vcs_info \uE0A0" $label" \
                                        "$dirty"        \

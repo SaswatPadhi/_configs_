@@ -147,15 +147,18 @@ map q <NOP>
 " Too lazy to press Shift
 nnoremap ; :
 
-inoremap <C-z> <C-o>u
+inoremap <C-s> <C-o>:update<CR>
 inoremap <C-y> <C-o><C-r>
+inoremap <C-z> <C-o>u
 
 map t :tabnew<SPACE>
-map <Leader>t :tabn<CR>
-map <Leader><Leader>t :tabp<CR>
+map <Leader>t :tabnext<CR>
+map <Leader><Leader>t :tabprevious<CR>
 
-map <Leader>s :split<SPACE>
-map <Leader>v :vsplit<SPACE>
+map <Leader>hs :split<SPACE>
+map <Leader>vs :vsplit<SPACE>
+
+map <Leader>sh :split<CR>:terminal fish<CR>
 
 vmap < <gv
 vmap > >gv
