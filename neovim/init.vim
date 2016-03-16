@@ -21,27 +21,28 @@ Plug 'tpope/vim-sensible'
 Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'valloric/MatchTagAlways'
-Plug 'vim-utils/vim-man'
 Plug 'lervag/vimtex'
 Plug 'dag/vim-fish'
 " }
 
 " Features & Utilities {
+Plug 'junegunn/vim-easy-align'
+noremap <Leader>a :LiveEasyAlign<CR>
+
 Plug 'Chiel92/vim-autoformat'
 map <Leader>f :Autoformat<CR>
 
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 
-Plug 'critiqjo/lldb.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 let g:limelight_priority = -1
 let g:limelight_conceal_ctermfg = 'Grey'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-map <Leader>g :Goyo<CR>
-map <Leader><Leader>g :Goyo!<CR>
+noremap <Leader>g :Goyo<CR>
+noremap <Leader><Leader>g :Goyo!<CR>
 
 Plug 'henrik/vim-indexed-search'
 
@@ -56,7 +57,7 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree")
       \ && b:NERDTree.isTabTree()) | q | endif
-map <Leader>e :NERDTreeToggle<CR>
+noremap <Leader>e :NERDTreeToggle<CR>
 
 Plug 'mhinz/vim-startify'
 let g:startify_enable_special = 0
@@ -70,8 +71,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler_options = ' -std=c++1z'
-map <Leader>s :SyntasticCheck<CR>
-map <Leader><Leader>s :SyntasticReset<CR>
+noremap <Leader>s :SyntasticCheck<CR>
+noremap <Leader><Leader>s :SyntasticReset<CR>
 " }
 
 " Themes & Colors ---- {
@@ -103,9 +104,11 @@ set smartcase                                   " ... unless we use a Capital
 
 set noshowmode                                  " let airline control show mode
 set showcmd                                     " show in-progress commands
-set splitright splitbelow
 
+set splitright splitbelow
+set spell
 set nowrap
+
 set list listchars=tab:›\ ,trail:•,extends:»
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
@@ -139,10 +142,10 @@ autocmd BufReadPost *
 
 " Key Bindings {
 " Who needs ex?
-nnoremap Q <NOP>
+noremap Q <NOP>
 
 " Recording macros is beyond me
-map q <NOP>
+noremap q <NOP>
 
 " Too lazy to press Shift
 nnoremap ; :
@@ -151,20 +154,20 @@ inoremap <C-s> <C-o>:update<CR>
 inoremap <C-y> <C-o><C-r>
 inoremap <C-z> <C-o>u
 
-map t :tabnew<SPACE>
-map <Leader>t :tabnext<CR>
-map <Leader><Leader>t :tabprevious<CR>
+noremap t :tabnew<SPACE>
+noremap <Leader>t :tabnext<CR>
+noremap <Leader><Leader>t :tabprevious<CR>
 
-map <Leader>hs :split<SPACE>
-map <Leader>vs :vsplit<SPACE>
+noremap <Leader>hs :split<SPACE>
+noremap <Leader>vs :vsplit<SPACE>
 
-map <Leader>sh :split<CR>:terminal fish<CR>
+noremap <Leader>sh :split<CR>:terminal fish<CR>
 
-vmap < <gv
-vmap > >gv
+vnoremap < <gv
+vnoremap > >gv
 
-map <ESC> :noh<CR>
+noremap <ESC> :noh<CR>
 
 " Strip white space
-map <Leader>sw :%s/\s\+$//e<CR>
+noremap <Leader>sw :%s/\s\+$//e<CR>
 " }
