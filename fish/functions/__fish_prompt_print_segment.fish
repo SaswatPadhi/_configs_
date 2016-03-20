@@ -28,10 +28,15 @@ function __fish_prompt_print_segment --no-scope-shadowing                      \
       echo -n \uE0B2
     end
   end
-
-  set_color $color $attr --background=$bg_color
-  echo -ns " $data "
-
   set last_color "$color" ; set last_bg_color "$bg_color"
+
+  if [ "$attr" = '--command' ]
+    set_color --background=$bg_color
+    eval "$data"
+  else
+    set_color $color $attr --background=$bg_color
+    echo -ns " $data "
+  end
+
   set_color normal
 end

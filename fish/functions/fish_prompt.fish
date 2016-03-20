@@ -53,39 +53,5 @@ function fish_prompt --description='Primary/Left prompt on Fish'
 
   __fish_prompt_print_pwd_segment
 
-  # Display git info about pending commits
-  command -s git >/dev/null ^/dev/null; and git status >/dev/null ^/dev/null
-  if [ $status -eq 0 ]
-    set local_branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
-    set remote_branch (git rev-parse --abbrev-ref --symbolic-full-name @\{u\} \
-                           ^/dev/null)
-
-    if [ "$remote_branch" ]
-      set pending_commits (git rev-list --left-right --count           \
-                                        $local_branch...$remote_branch \
-                                        ^/dev/null                     \
-                           | tr \t \n)
-
-      [ "$pending_commits[1]" -gt 0 ]
-        and __fish_prompt_print_segment $__fish_greys[1] $__fish_color_info \
-                                        \u2934"$pending_commits[1]"
-      [ "$pending_commits[2]" -gt 0 ]
-        and __fish_prompt_print_segment $__fish_greys[1] $__fish_color_info \
-                                        \u2935"$pending_commits[2]"
-    end
-  end
-
-  # Display svn update info --- EXTREMELY SLOW!
-  #
-  # command -s svn >/dev/null ^/dev/null; and svn info >/dev/null ^/dev/null
-  # if [ $status -eq 0 ]
-  #   set local_rev (svn info | grep 'Last Changed Rev:' | cut -d' ' -f4)
-  #   set remote_rev (svn info -rHEAD | grep 'Last Changed Rev:' | cut -d' ' -f4)
-  #
-  #   [ "$local_rev" != "$remote_rev" ]
-  #     and __fish_prompt_print_segment $__fish_greys[1] $__fish_color_info \
-  #                                     \u2935"r$remote_rev"
-  # end
-
   __fish_prompt_finalize
 end
