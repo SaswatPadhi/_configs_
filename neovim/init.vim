@@ -36,13 +36,13 @@ Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 let g:limelight_priority = -1
 let g:limelight_conceal_ctermfg = 'Grey'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 noremap <Leader>g :Goyo<CR>
-noremap <Leader><Leader>g :Goyo!<CR>
 
 Plug 'henrik/vim-indexed-search'
 
