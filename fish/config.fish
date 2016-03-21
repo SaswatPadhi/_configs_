@@ -33,11 +33,12 @@ fish_reset_colors
 # Configuration for __fish_git_prompt
 set -g __fish_git_prompt_show_informative_status 'yes'
 
-set -g __fish_git_prompt_char_dirtystate     \u00B1
-set -g __fish_git_prompt_char_invalidstate   \u00D7
-set -g __fish_git_prompt_char_stagedstate    \u00B7
-set -g __fish_git_prompt_char_stashstate     '?'
-set -g __fish_git_prompt_char_stateseparator ' '\uE0B3' '
+set -g __fish_git_prompt_char_upstream_prefix ' '
+set -g __fish_git_prompt_char_dirtystate      \u2217
+set -g __fish_git_prompt_char_invalidstate    \u00D7
+set -g __fish_git_prompt_char_stagedstate     \u2299
+set -g __fish_git_prompt_char_stashstate      '?'
+set -g __fish_git_prompt_char_stateseparator  ' '\uE0B3' '
 
 
 # == ALIASES ================================================================= #
