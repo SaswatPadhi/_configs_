@@ -38,6 +38,14 @@ if [ "$?" -eq $BACKUP_CODE ]; then EXTRA_FLAGS="--backup=numbered" ; fi
 log INFO ; ln -rfsv $EXTRA_FLAGS "${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/init.vim" "${NVIM_CONFIG_PATH}/init.vim"
 
 
+# Link the neovim init
+
+log INFO "[+] Linking gtags.vim file\n"
+check_and_replace "${NVIM_CONFIG_PATH}/autoload/gtags.vim" allow_backup
+if [ "$?" -eq $BACKUP_CODE ]; then EXTRA_FLAGS="--backup=numbered" ; fi
+log INFO ; ln -fsv $EXTRA_FLAGS "/usr/local/share/gtags/gtags.vim" "${NVIM_CONFIG_PATH}/autoload/gtags.vim"
+
+
 # Start neovim and update plugins
 
 log INFO "[+] Running post-install scripts\n"
