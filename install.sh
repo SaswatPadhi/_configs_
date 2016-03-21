@@ -9,18 +9,6 @@ source "${__BASH_INSTALL_SH_LIB__}/replace.sh"
 
 # ------------------------------------------------------------------------------
 
-print_border () {
-  local LENGTH=$(( 63 - ${#2} ))
-
-  if [ "$1" == "HEADING" ]; then
-    log "$1" "BEGIN: $2 "; printf '=%.0s' $(seq 1 $LENGTH) ; printf "\n"
-  elif [ "$1" == "TAILING" ]; then
-    log "$1" "ENDOF: $2 "; printf '=%.0s' $(seq 1 $LENGTH) ; printf "\n"
-  fi
-}
-
-# ------------------------------------------------------------------------------
-
 __BASH_INSTALL_SH_MESSAGE__='~/[dot]-files'
 print_border HEADING "${__BASH_INSTALL_SH_MESSAGE__}"
 for DOT_FILE in "${__BASH_INSTALL_SH_SOURCE__}/tilde"/dot_*; do
@@ -47,7 +35,5 @@ print_border TAILING "${__BASH_INSTALL_SH_MESSAGE__}"
 
 shopt -s nullglob
 for INSTALL_SCRIPT in "${__BASH_INSTALL_SH_SOURCE__}"/*/install.sh; do
-  print_border HEADING "${INSTALL_SCRIPT}"
   bash "${INSTALL_SCRIPT}"
-  print_border TAILING "${INSTALL_SCRIPT}"
 done

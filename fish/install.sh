@@ -16,6 +16,8 @@ verify_dependencies "${FISH}"
 
 # ------------------------------------------------------------------------------
 
+print_border HEADING "fish config installation"
+
 # Link config file
 
 log INFO "[+] Linking config file\n"
@@ -37,3 +39,4 @@ for config_directory in "${__BASH_FISH_INSTALL_SH_SOURCE__}"/*; do
 done
 
 log WARN "[!] Please restart fish to source the new config.\n"
+print_border TAILING "fish config installation"

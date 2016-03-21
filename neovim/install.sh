@@ -1,6 +1,7 @@
 #!/bin/bash
 
 NVIM="nvim"
+CURL="curl"
 NVIM_CONFIG_PATH="${HOME}/.config/nvim"
 
 # ------------------------------------------------------------------------------
@@ -12,18 +13,20 @@ source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/depends.sh"
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/logging.sh"
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/replace.sh"
 
-verify_dependencies "${NVIM}"
+verify_dependencies "${NVIM}" "${CURL}"
 
 # ------------------------------------------------------------------------------
 
+print_border HEADING "neovim config installation"
+
 # Download vim-plug
 
-log INFO "[+] Install vim-plug plugin manager\n"
+log INFO "[+] Installing vim-plug plugin manager\n"
 check_and_replace "${NVIM_CONFIG_PATH}/autoload/plug.vim" allow_skip
 if [ "$?" -eq $OVERWRITE_CODE ]; then
   log INFO
-  curl -#fLo "${NVIM_CONFIG_PATH}/autoload/plug.vim" --create-dirs             \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  $CURL -#fLo "${NVIM_CONFIG_PATH}/autoload/plug.vim" --create-dirs            \
+        "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 fi
 
 
@@ -40,3 +43,5 @@ log INFO ; ln -rfsv $EXTRA_FLAGS "${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/init.vim"
 log INFO "[+] Running post-install scripts\n"
 ${NVIM} -S "${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/post-install.vim"
 log INFO "Everything looks okay! Have fun with nvim.\n"
+
+print_border TAILING "neovim config installation"

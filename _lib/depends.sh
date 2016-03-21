@@ -12,7 +12,7 @@ source "${__BASH_LIB_DEPENDS_SH_LIB__}/logging.sh"
 
 # ------------------------------------------------------------------------------
 
-UNMET_DEPENDENCIES=2
+__BASH_LIB_DEPENDS_SH_UNMET_DEPENDENCIES=2
 
 # ------------------------------------------------------------------------------
 
@@ -22,6 +22,10 @@ command_exists () {
   else
     return 1 # errors = false = non-zero exit code
   fi
+}
+
+is_lower_version () {
+  [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
 }
 
 verify_dependencies () {
@@ -38,7 +42,7 @@ verify_dependencies () {
       log SUCCESS "${Pur}${dependency} ${SUCC}detected: ${IPur}"; ${dependency} ${version_flag} | head -n 1
     else
       log FATAL "${dependency} not detected. Please install, add to path and re-run this script.\n"
-      exit ${UNMET_DEPENDENCIES}
+      exit ${__BASH_LIB_DEPENDS_SH_UNMET_DEPENDENCIES}
     fi
   done
 }

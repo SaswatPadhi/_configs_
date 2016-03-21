@@ -32,3 +32,13 @@ log () {
     printf "${Col}${Tag::4}]--- $Time > $ARGUMENTS"
   fi
 }
+
+print_border () {
+  local LENGTH=$(( 63 - ${#2} ))
+
+  if [ "$1" == "HEADING" ]; then
+    log "$1" "BEGIN: $2 "; printf '=%.0s' $(seq 1 $LENGTH) ; printf "\n"
+  elif [ "$1" == "TAILING" ]; then
+    log "$1" "ENDOF: $2 "; printf '=%.0s' $(seq 1 $LENGTH) ; printf "\n"
+  fi
+}
