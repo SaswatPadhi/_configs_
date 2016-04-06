@@ -6,13 +6,19 @@ set -gx fish_greeting
 # Launch byobu on startup
 status --is-login; and status --is-interactive; and exec byobu-launcher
 
-# OPAM configuration
-source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
 
 # == PATH =====================================================================#
 
 set -gx PATH ~/bin ~/.rvm/bin $PATH
+
+
+# == CONFIGS ==================================================================#
+
+# OPAM
+source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+# RVM
+rvm use default > /dev/null 2> /dev/null
 
 
 # == THEME =================================================================== #
@@ -43,10 +49,10 @@ set -g __fish_git_prompt_char_stateseparator  ' '\uE0B3' '
 
 # == ALIASES ================================================================= #
 
-alias grep  "grep -sin --color=auto"
-alias rm    "rm -iv"
-alias vi    "nvim"
-alias vim   "nvim"
+alias greps  "grep -sin --color=auto"
+alias rm     "rm -i"
+alias vi     "nvim"
+alias vim    "nvim"
 
 
 # == GLOBALS ================================================================= #

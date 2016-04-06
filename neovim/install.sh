@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NVIM="nvim"
 CURL="curl"
+NVIM="nvim"
 NVIM_CONFIG_PATH="${HOME}/.config/nvim"
 
 # ------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/depends.sh"
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/logging.sh"
 source "${__BASH_NEOVIM_INSTALL_SH_LIB__}/replace.sh"
 
-verify_dependencies "${NVIM}" "${CURL}"
+verify_dependencies "${CURL}" "${NVIM}"
 
 # ------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ if [ "$?" -eq $BACKUP_CODE ]; then EXTRA_FLAGS="--backup=numbered" ; fi
 log INFO ; ln -rfsv $EXTRA_FLAGS "${__BASH_NEOVIM_INSTALL_SH_SOURCE__}/init.vim" "${NVIM_CONFIG_PATH}/init.vim"
 
 
-# Link the neovim init
+# Link GNU Global vim plugin
 
 log INFO "[+] Linking gtags.vim file\n"
 check_and_replace "${NVIM_CONFIG_PATH}/autoload/gtags.vim" allow_backup
