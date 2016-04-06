@@ -12,7 +12,7 @@ source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # == PATH =====================================================================#
 
-set -gx PATH ~/bin $PATH
+set -gx PATH ~/bin ~/.rvm/bin $PATH
 
 
 # == THEME =================================================================== #
@@ -45,6 +45,8 @@ set -g __fish_git_prompt_char_stateseparator  ' '\uE0B3' '
 
 alias grep  "grep -sin --color=auto"
 alias rm    "rm -iv"
+alias vi    "nvim"
+alias vim   "nvim"
 
 
 # == GLOBALS ================================================================= #

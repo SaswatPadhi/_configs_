@@ -18,10 +18,12 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 
 " Languages & Highlighting {
+Plug 'MnO2/vim-ocaml-conceal'
 Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'valloric/MatchTagAlways'
 Plug 'lervag/vimtex'
+autocmd FileType tex set conceallevel=2
 Plug 'dag/vim-fish'
 " }
 
@@ -85,9 +87,11 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'Yggdroot/indentLine'
-let g:indentLine_char = ':'
-let g:indentLine_color_term = 251
+Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_guide_size = 1
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 " }
 
 call plug#end()
@@ -135,9 +139,10 @@ autocmd InsertEnter * set relativenumber!
 
 " Restore cursor position
 autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
-  \   execute("normal `\"") |
-  \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$")
+      \                    && &filetype != "gitcommit" |
+      \   execute("normal `\"") |
+      \ endif
 " }
 
 " Key Bindings {
