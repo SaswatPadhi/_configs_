@@ -32,4 +32,9 @@ check_and_replace "${BYOBU_CONFIG_PATH}/.tmux.conf" allow_backup
 if [ "$?" -eq $BACKUP_CODE ]; then EXTRA_FLAGS="--backup=numbered" ; fi
 log INFO ; ln -rfsv $EXTRA_FLAGS "${__BASH_BYOBU_INSTALL_SH_SOURCE__}/.tmux.conf" "${BYOBU_CONFIG_PATH}/.tmux.conf"
 
+# Link .always-select
+
+log INFO "[+] Linking tmux config file\n"
+log INFO ; ln -rfsv "${__BASH_BYOBU_INSTALL_SH_SOURCE__}/.always-select" "${BYOBU_CONFIG_PATH}/.always-select"
+
 print_border TAILING "byobu config installation"
