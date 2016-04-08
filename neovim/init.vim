@@ -155,6 +155,14 @@ noremap q <NOP>
 " Too lazy to press Shift
 nnoremap ; :
 
+" Copy to clipboard
+noremap  <leader>y  "+y
+noremap  <leader>Y  "+yg_
+
+" Paste from clipboard
+noremap <leader>p "+p
+noremap <leader>P "+P
+
 inoremap <C-s> <C-o>:update<CR>
 inoremap <C-y> <C-o><C-r>
 inoremap <C-z> <C-o>u

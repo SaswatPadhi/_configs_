@@ -19,17 +19,6 @@ verify_dependencies "${CURL}" "${FISH}"
 
 print_border HEADING "fish config installation"
 
-# Download rvm.fish
-
-log INFO "[+] Downloading RVM workaround\n"
-check_and_replace "${FISH_CONFIG_PATH}/functions/rvm.fish" allow_skip
-if [ "$?" -eq $OVERWRITE_CODE ]; then
-  log INFO
-  $CURL -#fLo "${FISH_CONFIG_PATH}/functions/rvm.fish" --create-dirs           \
-        "https://raw.githubusercontent.com/lunks/fish-nuggets/master/functions/rvm.fish"
-fi
-
-
 # Link config file
 
 log INFO "[+] Linking config file\n"
