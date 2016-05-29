@@ -51,7 +51,7 @@ function rvm -d 'Ruby enVironment Manager'
   and eval ( \
     grep '^rvm\|^[^=]*PATH\|^RUBY_\|^GEM_' $env_file | \
     grep -v _clr | grep -v _debug | \
-    sed '/^(PATH\|CDPATH\|MANPATH)/y/:/ /; s/^/set -xg /; s/=/ /; s/$/ ;/; s/(//; s/)//' \
+    sed '/^\(PATH\|CDPATH\|MANPATH\)/y/:/ /; s/^/set -xg /; s/=/ /; s/$/ ;/; s/(//; s/)//' \
   )
 
   # clean up

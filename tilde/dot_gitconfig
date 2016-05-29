@@ -1,6 +1,7 @@
 [user]
   email = saswat.sourav@gmail.com
   name = Saswat Padhi
+	signingkey = 02740FF5
 
 [filter "lfs"]
   clean = git-lfs clean %f
@@ -10,3 +11,7 @@
 [alias]
   dfw = diff -w
   sta = stash --keep-index --include-untracked
+[push]
+	default = simple
+[commit]
+	gpgsign = true

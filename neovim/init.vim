@@ -20,6 +20,7 @@ Plug 'tpope/vim-sensible'
 " Languages & Highlighting {
 Plug 'MnO2/vim-ocaml-conceal'
 Plug 'sheerun/vim-polyglot'
+Plug 'raichoo/smt-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'valloric/MatchTagAlways'
 Plug 'lervag/vimtex'
@@ -170,6 +171,9 @@ inoremap <C-z> <C-o>u
 noremap t :tabnew<SPACE>
 noremap <Leader>t :tabnext<CR>
 noremap <Leader><Leader>t :tabprevious<CR>
+
+noremap <Leader>b :bnext<CR>
+noremap <Leader><Leader>b :bprevious<CR>
 
 noremap <Leader>hs :split<SPACE>
 noremap <Leader>vs :vsplit<SPACE>
