@@ -1,7 +1,7 @@
 [user]
   email = saswat.sourav@gmail.com
   name = Saswat Padhi
-	signkey = 02740FF5
+	signingkey = 02740FF5
 
 [filter "lfs"]
   clean = git-lfs clean %f
