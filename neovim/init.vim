@@ -18,7 +18,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 
 " Languages & Highlighting {
-Plug 'MnO2/vim-ocaml-conceal'
+"Plug 'MnO2/vim-ocaml-conceal'
 Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'valloric/MatchTagAlways'
@@ -73,6 +73,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler_options = ' -std=c++1z'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '❗'
 noremap <Leader>s :SyntasticCheck<CR>
 noremap <Leader><Leader>s :SyntasticReset<CR>
 " }
