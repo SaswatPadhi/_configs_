@@ -1,7 +1,7 @@
 [user]
   email = saswat.sourav@gmail.com
   name = Saswat Padhi
-	signingkey = 02740FF5
+	signingkey = 3D9F2CA9700E1497
 
 [filter "lfs"]
   clean = git-lfs clean %f
@@ -14,4 +14,10 @@
 [commit]
 	gpgsign = true
 [push]
-	default = simple
+  default = simple
+
+[diff]
+    tool = vim
+
+[difftool "vim"]
+  cmd = nvim -d $BASE $LOCAL
